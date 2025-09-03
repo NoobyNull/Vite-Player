@@ -78,3 +78,6 @@ test.log
 !uploads/.gitkeep
 !logs/.gitkeep
 !config/.gitkeep
+
+# KiloCode configuration (contains sensitive tokens)
+.kilocode/
