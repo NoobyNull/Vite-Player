@@ -21,36 +21,54 @@ A dynamic application player for GoogleAI Studio Vite applications with upload, 
 
 ## 🎯 Quick Start
 
-### Prerequisites
+### ⚡ One-Line Installation (Recommended)
 
+Install everything automatically with a single command:
+
+```bash
+# Using wget
+wget -O- https://raw.githubusercontent.com/YOUR_USERNAME/googleai-app-player/main/quick-install.sh | bash
+
+# Using curl
+curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/googleai-app-player/main/quick-install.sh | bash
+```
+
+This will:
+- ✅ Check and install all dependencies (Node.js, npm, git)
+- ✅ Clone the repository automatically
+- ✅ Install application dependencies
+- ✅ Configure and test the installation
+- ✅ Optionally install as a system service
+- ✅ Start the server immediately
+
+### 📋 Manual Installation
+
+If you prefer manual control:
+
+#### Prerequisites
 - **Node.js** v18+ and npm v8+
 - **Debian/Ubuntu Linux** (tested on Debian 13)
 - **Chrome/Chromium** for testing (optional)
 
-### Installation
-
-1. **Clone or Extract** the GoogleAI App Player:
+#### Steps
+1. **Clone Repository**:
    ```bash
-   cd /home/yax/googleai-app-player
+   git clone https://github.com/YOUR_USERNAME/googleai-app-player.git
+   cd googleai-app-player
    ```
 
-2. **Install Dependencies**:
+2. **Run Installer**:
+   ```bash
+   ./install.sh
+   ```
+
+3. **Or Install Manually**:
    ```bash
    npm install
-   ```
-
-3. **Start the Server**:
-   ```bash
    npm start
-   ```
-   
-   Or specify a custom port:
-   ```bash
-   PORT=8081 npm start
    ```
 
 4. **Access Dashboard**:
-   Open your browser and navigate to:
    ```
    http://localhost:8081
    ```
