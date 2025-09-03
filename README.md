@@ -28,10 +28,10 @@ Install everything automatically with a single command:
 
 ```bash
 # Using wget
-wget -O- https://raw.githubusercontent.com/noobynull/vite-player/main/quick-install.sh | bash
+wget -O- https://raw.githubusercontent.com/NoobyNull/Vite-Player/main/quick-install.sh | bash
 
 # Using curl
-curl -fsSL https://raw.githubusercontent.com/noobynull/vite-player/main/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/NoobyNull/Vite-Player/main/quick-install.sh | bash
 ```
 
 This will:
@@ -54,8 +54,8 @@ If you prefer manual control:
 #### Steps
 1. **Clone Repository**:
    ```bash
-   git clone https://github.com/noobynull/vite-player.git
-   cd vite-player
+   git clone https://github.com/NoobyNull/Vite-Player.git
+   cd Vite-Player
    ```
 
 2. **Run Installer**:

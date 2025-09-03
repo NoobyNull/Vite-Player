@@ -10,14 +10,14 @@
     "setup": "node scripts/setup.js"
   },
   "keywords": ["vite", "app-player", "upload", "manager", "base64", "multi-app", "development"],
-  "author": "noobynull",
+  "author": "NoobyNull",
   "repository": {
     "type": "git",
-    "url": "https://github.com/noobynull/vite-player.git"
+    "url": "https://github.com/NoobyNull/Vite-Player.git"
   },
-  "homepage": "https://github.com/noobynull/vite-player",
+  "homepage": "https://github.com/NoobyNull/Vite-Player",
   "bugs": {
-    "url": "https://github.com/noobynull/vite-player/issues"
+    "url": "https://github.com/NoobyNull/Vite-Player/issues"
   },
   "license": "MIT",
   "dependencies": {

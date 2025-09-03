@@ -16,8 +16,8 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO_URL="https://github.com/noobynull/vite-player.git"
-INSTALL_DIR="$HOME/vite-player"
+REPO_URL="https://github.com/NoobyNull/Vite-Player.git"
+INSTALL_DIR="$HOME/Vite-Player"
 NODE_VERSION="18"
 DEFAULT_PORT="8081"
 
