@@ -245,6 +245,167 @@ class Base44AppPlayer {
             validateBtn.disabled = false;
         }
     }
+    // GitHub Upload Methods
+    switchUploadMode(mode) {
+        this.currentUploadMode = mode;
+        
+        // Update button states
+        document.getElementById('zipModeBtn').classList.toggle('active', mode === 'zip');
+        document.getElementById('githubModeBtn').classList.toggle('active', mode === 'github');
+        
+        // Show/hide upload areas
+        document.getElementById('uploadArea').classList.toggle('hidden', mode !== 'zip');
+        document.getElementById('githubArea').classList.toggle('hidden', mode !== 'github');
+        
+        // Reset forms
+        if (mode === 'github') {
+            this.resetGitHubValidation();
+        }
+    }
+
+    resetGitHubValidation() {
+        const githubInfo = document.getElementById('githubInfo');
+        const importBtn = document.getElementById('importGithubBtn');
+        
+        githubInfo.classList.add('hidden');
+        importBtn.disabled = true;
+    }
+
+    async validateGitHubRepo() {
+        const githubInput = document.getElementById('githubInput');
+        const githubUrl = githubInput.value.trim();
+
+        if (!githubUrl) {
+            this.showToast('Please enter a GitHub repository URL', 'error');
+            return;
+        }
+
+        if (!this.isValidGitHubUrl(githubUrl)) {
+            this.showToast('Please enter a valid GitHub repository URL', 'error');
+            return;
+        }
+
+        const validateBtn = document.getElementById('validateGithubBtn');
+        const originalText = validateBtn.textContent;
+        validateBtn.textContent = '🔄 Validating...';
+        validateBtn.disabled = true;
+
+        try {
+            const response = await fetch('/api/github/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ githubUrl })
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.valid) {
+                this.showGitHubInfo(result.repoInfo);
+                this.showToast('✅ Valid Base44 repository detected!', 'success');
+                document.getElementById('importGithubBtn').disabled = false;
+            } else {
+                this.showToast(`❌ ${result.message || result.error}`, 'error');
+                this.resetGitHubValidation();
+            }
+        } catch (error) {
+            this.showToast(`Validation failed: ${error.message}`, 'error');
+            this.resetGitHubValidation();
+        } finally {
+            validateBtn.textContent = originalText;
+            validateBtn.disabled = false;
+        }
+    }
+
+    showGitHubInfo(repoInfo) {
+        document.getElementById('repoName').textContent = repoInfo.name;
+        document.getElementById('repoBranch').textContent = repoInfo.branch || 'main';
+        document.getElementById('githubInfo').classList.remove('hidden');
+    }
+
+    async handleGitHubImport() {
+        const githubInput = document.getElementById('githubInput');
+        const githubUrl = githubInput.value.trim();
+
+        if (!githubUrl) {
+            this.showToast('Please enter a GitHub repository URL', 'error');
+            return;
+        }
+
+        const importBtn = document.getElementById('importGithubBtn');
+        const originalText = importBtn.textContent;
+        importBtn.textContent = '📥 Importing...';
+        importBtn.disabled = true;
+
+        // Show progress
+        this.showGitHubProgress();
+
+        try {
+            const response = await fetch('/api/github/import', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ githubUrl })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                this.hideGitHubProgress();
+                this.showToast(`App "${result.app.name}" imported successfully from GitHub!`, 'success');
+                
+                // Clear form
+                githubInput.value = '';
+                this.resetGitHubValidation();
+                
+                // Reload apps
+                this.loadApps();
+                
+                // Auto-start if enabled
+                if (this.settings.autoStart) {
+                    setTimeout(() => {
+                        this.startApp(result.app.id);
+                    }, 1000);
+                }
+            } else {
+                throw new Error(result.error || 'GitHub import failed');
+            }
+        } catch (error) {
+            this.hideGitHubProgress();
+            this.showToast(`Import failed: ${error.message}`, 'error');
+        } finally {
+            importBtn.textContent = originalText;
+            importBtn.disabled = false;
+        }
+    }
+
+    isValidGitHubUrl(url) {
+        const githubUrlPattern = /^https:\/\/github\.com\/[^\/]+\/[^\/]+(?:\.git)?(?:\/.*)?$/;
+        return githubUrlPattern.test(url);
+    }
+
+    showGitHubProgress() {
+        document.querySelector('#githubArea .upload-content').classList.add('hidden');
+        document.getElementById('githubProgress').classList.remove('hidden');
+    }
+
+    hideGitHubProgress() {
+        document.querySelector('#githubArea .upload-content').classList.remove('hidden');
+        document.getElementById('githubProgress').classList.add('hidden');
+        document.getElementById('githubProgressFill').style.width = '0%';
+        document.getElementById('githubProgressText').textContent = 'Importing... 0%';
+    }
+
+    updateGitHubProgress(progress) {
+        const progressFill = document.getElementById('githubProgressFill');
+        const progressText = document.getElementById('githubProgressText');
+        
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `Importing... ${progress}%`;
+    }
+
 
     async handleBase64Upload() {
         const base64Input = document.getElementById('base64Input');
@@ -624,5 +785,5 @@ class Base44AppPlayer {
 
 // Initialize the application when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new GoogleAIAppPlayer();
+    new Base44AppPlayer();
 });

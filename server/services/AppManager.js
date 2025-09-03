@@ -564,6 +564,17 @@ class AppManager extends EventEmitter {
         return parseFloat(num) * multipliers[unit];
     }
 
+    async registerApp(appData) {
+        // Add app to collection
+        this.apps.set(appData.id, appData);
+        await this.saveAppsConfig();
+        
+        this.emit('app_installed', appData);
+        this.logger.info(`App registered successfully: ${appData.name} (${appData.id})`);
+        
+        return appData;
+    }
+
     sanitizeName(filename) {
         return path.basename(filename, '.zip')
             .replace(/[^a-zA-Z0-9\-_\s]/g, '')

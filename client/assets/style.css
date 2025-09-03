@@ -14,9 +14,22 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* For larger screens, add a reasonable max-width but much wider */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container {
+        max-width: 1800px;
+    }
 }
 
 /* Header */
@@ -297,6 +310,32 @@ body {
 
 .info-item strong {
     color: #1f2937;
+}
+
+.github-options {
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.helper-text {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: #0369a1;
+    margin: 0;
+}
+
+.helper-text code {
+    background: #e0f2fe;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.8rem;
+    color: #0c4a6e;
 }
 
 /* Apps Section */
