@@ -16,8 +16,8 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO_URL="https://github.com/YOUR_USERNAME/googleai-app-player.git"
-INSTALL_DIR="$HOME/googleai-app-player"
+REPO_URL="https://github.com/noobynull/vite-player.git"
+INSTALL_DIR="$HOME/vite-player"
 NODE_VERSION="18"
 DEFAULT_PORT="8081"
 
@@ -27,34 +27,22 @@ SCRIPT_VERSION="1.0.0"
 clear
 echo -e "${BLUE}"
 cat << 'EOF'
-   ____                   _         _    ___   _                 
-  / ___| ___   ___   __ _| | ___   / \  |_ _| | |    ___  __ _  
- | |  _ / _ \ / _ \ / _` | |/ _ \ / _ \  | |  | |   / _ \/ _` | 
- | |_| | (_) | (_) | (_| | |  __// ___ \ | |  | |  |  __/ (_| | 
-  \____|\___/ \___/ \__, |_|\___/_/   \_\___| |_|   \___|\__,_| 
-                    |___/                                      
-            ____  _                       
-           |  _ \| | __ _ _   _  ___ _ __  
-           | |_) | |/ _` | | | |/ _ \ '__| 
-           |  __/| | (_| | |_| |  __/ |    
-           |_|   |_|\__,_|\__, |\___|_|    
-                          |___/            
-         ___             _        _ _ 
-        |_ _|_ __  ___| |_ __ _| | | ___ _ __ 
-         | || '_ \/ __| __/ _` | | |/ _ \ '__|
-         | || | | \__ \ || (_| | | |  __/ |   
-        |___|_| |_|___/\__\__,_|_|_|\___|_|   
+ ___    _____ _____ _____   ____  _       __     _______ ____
+ \  \  / /_ _|_   _| ____| |  _ \| | __ _ \ \   / | ____|  _ \
+  \  \/ / | |  | | |  _|   | |_) | |/ _` | \ \ / /|  _| | |_) |
+   \  /  | |  | | | |___  |  __/| | (_| |  \ V / | |___|  _ <
+    \/  |___| |_| |_____| |_|   |_|\__,_|   \_/  |_____|_| \_\
                                              
 EOF
 echo -e "${NC}"
 
-echo -e "${CYAN}🚀 GoogleAI App Player - Quick Installer v${SCRIPT_VERSION}${NC}"
-echo "============================================================"
+echo -e "${CYAN}🚀 Vite Player - Quick Installer v${SCRIPT_VERSION}${NC}"
+echo "================================================="
 echo ""
 echo -e "${YELLOW}This will automatically:${NC}"
 echo "  🔍 Detect your system and check dependencies"
 echo "  📦 Install Node.js, npm, git (if missing)"
-echo "  📥 Clone GoogleAI App Player from GitHub"
+echo "  📥 Clone Vite Player from GitHub"
 echo "  ⚙️  Install and configure the application"
 echo "  🚀 Start the server and show you the dashboard URL"
 echo ""

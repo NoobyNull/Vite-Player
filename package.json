@@ -1,7 +1,7 @@
 {
-  "name": "googleai-app-player",
+  "name": "vite-player",
   "version": "1.0.0",
-  "description": "A dynamic application player for GoogleAI Studio Vite applications with upload and management capabilities",
+  "description": "A dynamic application player for Vite applications with upload, Base64 support, and multi-app management capabilities",
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
@@ -9,8 +9,16 @@
     "install-deps": "npm install",
     "setup": "node scripts/setup.js"
   },
-  "keywords": ["googleai", "vite", "app-player", "upload", "manager"],
-  "author": "GoogleAI App Player",
+  "keywords": ["vite", "app-player", "upload", "manager", "base64", "multi-app", "development"],
+  "author": "noobynull",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noobynull/vite-player.git"
+  },
+  "homepage": "https://github.com/noobynull/vite-player",
+  "bugs": {
+    "url": "https://github.com/noobynull/vite-player/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",

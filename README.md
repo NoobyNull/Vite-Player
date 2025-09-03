@@ -1,9 +1,10 @@
-# 🤖 GoogleAI App Player
+# ⚡ Vite Player
 
-A dynamic application player for GoogleAI Studio Vite applications with upload, management, and multi-app support capabilities.
+A universal dynamic application player for Vite applications with upload, Base64 support, and multi-app management capabilities. Perfect for GoogleAI Studio projects and any Vite-based applications.
 
-![GoogleAI App Player Interface](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![Vite Player Interface](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
+![Vite](https://img.shields.io/badge/Vite-Any%20Version-646CFF)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ## ✨ Features
@@ -27,10 +28,10 @@ Install everything automatically with a single command:
 
 ```bash
 # Using wget
-wget -O- https://raw.githubusercontent.com/YOUR_USERNAME/googleai-app-player/main/quick-install.sh | bash
+wget -O- https://raw.githubusercontent.com/noobynull/vite-player/main/quick-install.sh | bash
 
 # Using curl
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/googleai-app-player/main/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/noobynull/vite-player/main/quick-install.sh | bash
 ```
 
 This will:
@@ -53,8 +54,8 @@ If you prefer manual control:
 #### Steps
 1. **Clone Repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/googleai-app-player.git
-   cd googleai-app-player
+   git clone https://github.com/noobynull/vite-player.git
+   cd vite-player
    ```
 
 2. **Run Installer**:
