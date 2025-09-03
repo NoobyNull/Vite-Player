@@ -1,7 +1,7 @@
 {
-  "name": "vite-player",
+  "name": "base44-app-player",
   "version": "1.0.0",
-  "description": "A dynamic application player for Vite applications with upload, Base64 support, and multi-app management capabilities",
+  "description": "A dynamic application player for Base44 applications with upload and multi-app management capabilities",
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
@@ -9,15 +9,15 @@
     "install-deps": "npm install",
     "setup": "node scripts/setup.js"
   },
-  "keywords": ["vite", "app-player", "upload", "manager", "base64", "multi-app", "development"],
-  "author": "NoobyNull",
+  "keywords": ["base44", "app-player", "upload", "manager", "multi-app", "development"],
+  "author": "Base44",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NoobyNull/Vite-Player.git"
+    "url": "https://github.com/Base44/Base44-App-Player.git"
   },
-  "homepage": "https://github.com/NoobyNull/Vite-Player",
+  "homepage": "https://github.com/Base44/Base44-App-Player",
   "bugs": {
-    "url": "https://github.com/NoobyNull/Vite-Player/issues"
+    "url": "https://github.com/Base44/Base44-App-Player/issues"
   },
   "license": "MIT",
   "dependencies": {

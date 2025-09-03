@@ -87,8 +87,8 @@ class AppManager extends EventEmitter {
             // Extract ZIP file
             const appInfo = await this.extractZipFile(zipFilePath, appDir);
             
-            // Validate Vite application
-            await this.validateViteApp(appDir);
+            // Validate Base44 application
+            await this.validateBase44App(appDir);
             
             // Create app metadata
             const app = {
@@ -96,7 +96,7 @@ class AppManager extends EventEmitter {
                 name: appInfo.name || this.sanitizeName(originalName),
                 version: appInfo.version || '1.0.0',
                 description: appInfo.description || '',
-                framework: 'Vite',
+                framework: 'Base44',
                 path: appDir,
                 status: 'stopped',
                 port: null,
@@ -209,7 +209,7 @@ class AppManager extends EventEmitter {
         });
     }
 
-    async validateViteApp(appDir) {
+    async validateBase44App(appDir) {
         // Check for package.json
         const packageJsonPath = path.join(appDir, 'package.json');
         let packageJson;
@@ -218,17 +218,22 @@ class AppManager extends EventEmitter {
             const packageData = await fs.readFile(packageJsonPath, 'utf8');
             packageJson = JSON.parse(packageData);
         } catch (error) {
-            throw new Error('Invalid Vite app: package.json not found or invalid');
+            throw new Error('Invalid Base44 app: package.json not found or invalid');
         }
 
-        // Check for Vite dependency
+        // Check for Base44 SDK dependency
         const dependencies = {
             ...packageJson.dependencies,
             ...packageJson.devDependencies
         };
 
+        if (!dependencies['@base44/sdk']) {
+            throw new Error('Invalid Base44 app: @base44/sdk dependency not found');
+        }
+
+        // Check for Vite dependency (Base44 apps are built on Vite)
         if (!dependencies.vite) {
-            throw new Error('Invalid Vite app: vite dependency not found');
+            this.logger.warn('Vite dependency not found, but proceeding anyway');
         }
 
         // Check for common Vite files
@@ -252,7 +257,15 @@ class AppManager extends EventEmitter {
         try {
             await fs.access(path.join(appDir, 'index.html'));
         } catch {
-            throw new Error('Invalid Vite app: index.html not found');
+            throw new Error('Invalid Base44 app: index.html not found');
+        }
+
+        // Check for Base44 client configuration
+        try {
+            await fs.access(path.join(appDir, 'src', 'api', 'base44Client.js'));
+            this.logger.info('Base44 client configuration found');
+        } catch {
+            this.logger.warn('Base44 client configuration not found at src/api/base44Client.js');
         }
     }
 

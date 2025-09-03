@@ -1,16 +1,16 @@
-# ⚡ Vite Player
+# ⚡ Base44 App Player
 
-A universal dynamic application player for Vite applications with upload, Base64 support, and multi-app management capabilities. Perfect for GoogleAI Studio projects and any Vite-based applications.
+A universal dynamic application player for Base44 applications with upload and multi-app management capabilities. Built specifically for Base44 platform applications.
 
-![Vite Player Interface](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![Base44 App Player Interface](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
-![Vite](https://img.shields.io/badge/Vite-Any%20Version-646CFF)
+![Base44](https://img.shields.io/badge/Base44-SDK-orange)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ## ✨ Features
 
-- **🚀 Upload & Play**: Drag-and-drop ZIP files from GoogleAI Studio
-- **🎯 Dynamic Management**: Install, start, stop, and restart Vite applications
+- **🚀 Upload & Play**: Drag-and-drop Base44 application ZIP files
+- **🎯 Dynamic Management**: Install, start, stop, and restart Base44 applications
 - **🔧 Port Management**: Automatic port allocation (3000-3999 range)
 - **⚙️ Configurable Modes**:
   - **Single App Mode**: Only one app runs at a time
@@ -19,6 +19,7 @@ A universal dynamic application player for Vite applications with upload, Base64
 - **📱 Real-time Dashboard**: Beautiful web interface with WebSocket updates
 - **🔄 Auto-restart**: Automatic dependency installation and app startup
 - **📊 System Monitoring**: Resource usage and status tracking
+- **🔒 Base44 Validation**: Automatic validation of @base44/sdk dependency
 
 ## 🎯 Quick Start
 
@@ -28,10 +29,10 @@ Install everything automatically with a single command:
 
 ```bash
 # Using wget
-wget -O- https://raw.githubusercontent.com/NoobyNull/Vite-Player/main/quick-install.sh | bash
+wget -O- https://raw.githubusercontent.com/Base44/Base44-App-Player/main/quick-install.sh | bash
 
 # Using curl
-curl -fsSL https://raw.githubusercontent.com/NoobyNull/Vite-Player/main/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Base44/Base44-App-Player/main/quick-install.sh | bash
 ```
 
 This will:
@@ -54,8 +55,8 @@ If you prefer manual control:
 #### Steps
 1. **Clone Repository**:
    ```bash
-   git clone https://github.com/NoobyNull/Vite-Player.git
-   cd Vite-Player
+   git clone https://github.com/Base44/Base44-App-Player.git
+   cd Base44-App-Player
    ```
 
 2. **Run Installer**:
@@ -92,10 +93,10 @@ If you prefer manual control:
 
 ### 1. Uploading Applications
 
-1. **Prepare Your Vite App**:
-   - Export from GoogleAI Studio as ZIP
+1. **Prepare Your Base44 App**:
+   - Export your Base44 application as ZIP
    - Ensure it contains `package.json` and `index.html`
-   - Vite dependency should be present
+   - @base44/sdk dependency must be present
 
 2. **Upload Methods**:
    - **Drag & Drop**: Drop ZIP file onto upload area
@@ -156,7 +157,7 @@ Access via the **⚙️ Settings** button:
 ### Upload Endpoints
 
 #### POST `/api/upload`
-Upload and install a new Vite application.
+Upload and install a new Base44 application.
 
 **Request**:
 ```bash
@@ -228,7 +229,7 @@ AUTO_START=true            # Auto-start apps on upload
 ### Directory Structure
 
 ```
-googleai-app-player/
+base44-app-player/
 ├── server/                 # Backend Node.js application
 │   ├── app.js             # Main server file
 │   ├── routes/            # API routes
@@ -236,7 +237,7 @@ googleai-app-player/
 ├── client/                # Frontend dashboard
 │   ├── index.html         # Main dashboard
 │   └── assets/            # CSS, JS, images
-├── apps/                  # Installed Vite applications
+├── apps/                  # Installed Base44 applications
 ├── uploads/               # Temporary upload storage
 ├── logs/                  # Application logs
 └── config/                # Configuration files
@@ -247,18 +248,18 @@ googleai-app-player/
 Create systemd service file:
 
 ```bash
-sudo nano /etc/systemd/system/googleai-app-player.service
+sudo nano /etc/systemd/system/base44-app-player.service
 ```
 
 ```ini
 [Unit]
-Description=GoogleAI App Player
+Description=Base44 App Player
 After=network.target
 
 [Service]
 Type=simple
 User=yax
-WorkingDirectory=/home/yax/googleai-app-player
+WorkingDirectory=/home/yax/base44-app-player
 ExecStart=/usr/bin/node server/app.js
 Restart=always
 RestartSec=3
@@ -271,8 +272,8 @@ WantedBy=multi-user.target
 
 Enable and start:
 ```bash
-sudo systemctl enable googleai-app-player
-sudo systemctl start googleai-app-player
+sudo systemctl enable base44-app-player
+sudo systemctl start base44-app-player
 ```
 
 ## 🐛 Troubleshooting
@@ -299,6 +300,7 @@ PORT=8081 npm start
 #### Apps Won't Start
 **Common Causes**:
 - Missing dependencies in `package.json`
+- Missing @base44/sdk dependency
 - Invalid Vite configuration
 - Port conflicts
 - Insufficient permissions
@@ -354,7 +356,7 @@ For support and questions:
 
 ### Planned Features
 - **Docker Support**: Containerized deployment
-- **App Templates**: Pre-built Vite templates
+- **App Templates**: Pre-built Base44 templates
 - **Backup/Restore**: Application backup system
 - **User Authentication**: Multi-user support
 - **App Store**: Community app sharing
@@ -362,6 +364,6 @@ For support and questions:
 
 ---
 
-**Made with ❤️ for GoogleAI Studio developers**
+**Made with ❤️ for Base44 platform developers**
 
 *Happy coding! 🚀*

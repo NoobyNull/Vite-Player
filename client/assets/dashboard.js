@@ -1,4 +1,4 @@
-class GoogleAIAppPlayer {
+class Base44AppPlayer {
     constructor() {
         this.apiBase = '';
         this.ws = null;
@@ -21,20 +21,6 @@ class GoogleAIAppPlayer {
     }
 
     setupEventListeners() {
-        // Upload mode switching
-        const zipModeBtn = document.getElementById('zipModeBtn');
-        const base64ModeBtn = document.getElementById('base64ModeBtn');
-        const uploadArea = document.getElementById('uploadArea');
-        const base64UploadArea = document.getElementById('base64UploadArea');
-
-        zipModeBtn.addEventListener('click', () => {
-            this.switchUploadMode('zip');
-        });
-
-        base64ModeBtn.addEventListener('click', () => {
-            this.switchUploadMode('base64');
-        });
-
         // ZIP Upload functionality
         const fileInput = document.getElementById('fileInput');
         const browseBtn = document.getElementById('browseBtn');
@@ -68,18 +54,6 @@ class GoogleAIAppPlayer {
             if (e.target.files.length > 0) {
                 this.handleFileUpload(e.target.files[0]);
             }
-        });
-
-        // Base64 Upload functionality
-        const validateBase64Btn = document.getElementById('validateBase64Btn');
-        const uploadBase64Btn = document.getElementById('uploadBase64Btn');
-
-        validateBase64Btn.addEventListener('click', () => {
-            this.validateBase64();
-        });
-
-        uploadBase64Btn.addEventListener('click', () => {
-            this.handleBase64Upload();
         });
 
         // Settings modal
@@ -164,25 +138,6 @@ class GoogleAIAppPlayer {
             case 'error':
                 this.showToast(data.message, 'error');
                 break;
-        }
-    }
-
-    switchUploadMode(mode) {
-        const zipModeBtn = document.getElementById('zipModeBtn');
-        const base64ModeBtn = document.getElementById('base64ModeBtn');
-        const uploadArea = document.getElementById('uploadArea');
-        const base64UploadArea = document.getElementById('base64UploadArea');
-
-        if (mode === 'zip') {
-            zipModeBtn.classList.add('active');
-            base64ModeBtn.classList.remove('active');
-            uploadArea.classList.remove('hidden');
-            base64UploadArea.classList.add('hidden');
-        } else {
-            base64ModeBtn.classList.add('active');
-            zipModeBtn.classList.remove('active');
-            uploadArea.classList.add('hidden');
-            base64UploadArea.classList.remove('hidden');
         }
     }
 

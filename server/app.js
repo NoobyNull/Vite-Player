@@ -10,7 +10,6 @@ const fs = require('fs').promises;
 const uploadRoutes = require('./routes/upload');
 const appsRoutes = require('./routes/apps');
 const settingsRoutes = require('./routes/settings');
-const base64Routes = require('./routes/base64');
 const AppManager = require('./services/AppManager');
 const Logger = require('./services/Logger');
 
@@ -96,7 +95,6 @@ class GoogleAIAppPlayerServer {
         this.app.use('/api/upload', uploadRoutes);
         this.app.use('/api/apps', appsRoutes);
         this.app.use('/api/settings', settingsRoutes);
-        this.app.use('/api/base64', base64Routes);
 
         // Health check
         this.app.get('/api/health', (req, res) => {
