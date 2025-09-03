@@ -1,0 +1,49 @@
+[Unit]
+Description=Chrome Remote Debug Service for GoogleAI App Player
+Documentation=https://github.com/googleai-app-player
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+User=yax
+Group=yax
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/google-chrome-stable \
+  --remote-debugging-port=9222 \
+  --no-first-run \
+  --no-default-browser-check \
+  --user-data-dir=/tmp/chrome-remote-profile \
+  --headless \
+  --disable-gpu \
+  --no-sandbox \
+  --noerrdialogs \
+  --disable-extensions \
+  --disable-plugins \
+  --disable-background-timer-throttling \
+  --disable-backgrounding-occluded-windows \
+  --disable-renderer-backgrounding \
+  --disable-features=TranslateUI \
+  --disable-ipc-flooding-protection
+ExecStop=/bin/pkill -f "chrome.*remote-debugging-port=9222"
+Restart=always
+RestartSec=5
+TimeoutStartSec=30
+TimeoutStopSec=10
+
+# Security settings
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/tmp
+PrivateTmp=no
+ProtectHome=read-only
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=chrome-remote-debug
+
+[Install]
+WantedBy=multi-user.target

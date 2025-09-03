@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoogleAI App Player</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <h1 class="logo">
+                    <span class="logo-icon">🤖</span>
+                    GoogleAI App Player
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="status-indicator" id="systemStatus">
+                    <span class="status-dot offline"></span>
+                    <span class="status-text">Offline</span>
+                </div>
+                <button class="btn btn-settings" id="settingsBtn">
+                    <span>⚙️</span> Settings
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <!-- Upload Mode Selector -->
+                <div class="upload-mode-selector">
+                    <button class="mode-btn active" id="zipModeBtn">📁 ZIP File</button>
+                    <button class="mode-btn" id="base64ModeBtn">📋 Base64 Code</button>
+                </div>
+
+                <!-- ZIP Upload Mode -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h2>Upload GoogleAI Vite Application</h2>
+                        <p>Drag and drop your ZIP file here, or click to browse</p>
+                        <input type="file" id="fileInput" accept=".zip" hidden>
+                        <button class="btn btn-primary" id="browseBtn">Browse Files</button>
+                    </div>
+                    <div class="upload-progress hidden" id="uploadProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Uploading... 0%</p>
+                    </div>
+                </div>
+
+                <!-- Base64 Upload Mode -->
+                <div class="base64-upload-area hidden" id="base64UploadArea">
+                    <div class="base64-content">
+                        <div class="upload-icon">📋</div>
+                        <h2>Upload from Base64 Code</h2>
+                        <p>Paste your Base64 encoded Vite application below</p>
+                        
+                        <div class="base64-form">
+                            <div class="form-group">
+                                <label for="appName">App Name (optional)</label>
+                                <input type="text" id="appName" placeholder="My Awesome App">
+                            </div>
+                            <div class="form-group">
+                                <label for="appDescription">Description (optional)</label>
+                                <input type="text" id="appDescription" placeholder="App description">
+                            </div>
+                            <div class="form-group">
+                                <label for="base64Input">Base64 Data</label>
+                                <textarea
+                                    id="base64Input"
+                                    placeholder="Paste your Base64 encoded ZIP data here..."
+                                    rows="8"
+                                ></textarea>
+                            </div>
+                            <div class="base64-actions">
+                                <button class="btn btn-secondary" id="validateBase64Btn">🔍 Validate</button>
+                                <button class="btn btn-primary" id="uploadBase64Btn">🚀 Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apps Grid -->
+            <section class="apps-section">
+                <div class="section-header">
+                    <h2>Installed Applications</h2>
+                    <div class="section-controls">
+                        <select id="modeSelect" class="mode-select">
+                            <option value="single">Single App Mode</option>
+                            <option value="multi">Multi App Mode</option>
+                            <option value="hybrid">Hybrid Mode</option>
+                        </select>
+                        <button class="btn btn-secondary" id="refreshBtn">🔄 Refresh</button>
+                    </div>
+                </div>
+                
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Apps will be dynamically loaded here -->
+                </div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📱</div>
+                    <h3>No Applications Found</h3>
+                    <p>Upload your first GoogleAI Vite application to get started.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close" id="closeSettings">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="portRange">Port Range</label>
+                    <input type="text" id="portRange" placeholder="3000-3999" value="3000-3999">
+                </div>
+                <div class="setting-group">
+                    <label for="maxApps">Max Concurrent Apps</label>
+                    <input type="number" id="maxApps" min="1" max="10" value="5">
+                </div>
+                <div class="setting-group">
+                    <label for="autoStart">Auto-start on Upload</label>
+                    <input type="checkbox" id="autoStart" checked>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSettings">Cancel</button>
+                <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="assets/dashboard.js"></script>
+</body>
+</html>

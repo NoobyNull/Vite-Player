@@ -1,0 +1,44 @@
+[Unit]
+Description=GoogleAI App Player - Dynamic Vite Application Manager
+Documentation=https://github.com/googleai-app-player
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=yax
+Group=yax
+WorkingDirectory=/home/yax/googleai-app-player
+ExecStart=/usr/bin/node server/app.js
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=3
+TimeoutStartSec=30
+TimeoutStopSec=30
+
+# Environment variables
+Environment=NODE_ENV=production
+Environment=PORT=8081
+Environment=MAX_APPS=5
+Environment=DEBUG=false
+
+# Security settings
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/yax/googleai-app-player/apps /home/yax/googleai-app-player/uploads /home/yax/googleai-app-player/logs /home/yax/googleai-app-player/config
+PrivateTmp=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LimitNOFILE=65536
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=googleai-app-player
+
+[Install]
+WantedBy=multi-user.target
