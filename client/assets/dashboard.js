@@ -9,6 +9,7 @@ class Base44AppPlayer {
             autoStart: true,
             mode: 'single'
         };
+        this.currentUploadMode = 'zip';
         this.init();
     }
 
@@ -21,9 +22,19 @@ class Base44AppPlayer {
     }
 
     setupEventListeners() {
+        // Upload mode switching
+        document.getElementById('zipModeBtn').addEventListener('click', () => {
+            this.switchUploadMode('zip');
+        });
+
+        document.getElementById('githubModeBtn').addEventListener('click', () => {
+            this.switchUploadMode('github');
+        });
+
         // ZIP Upload functionality
         const fileInput = document.getElementById('fileInput');
         const browseBtn = document.getElementById('browseBtn');
+        const uploadArea = document.getElementById('uploadArea');
 
         // Drag and drop
         uploadArea.addEventListener('dragover', (e) => {
@@ -54,6 +65,20 @@ class Base44AppPlayer {
             if (e.target.files.length > 0) {
                 this.handleFileUpload(e.target.files[0]);
             }
+        });
+
+        // GitHub functionality
+        document.getElementById('validateGithubBtn').addEventListener('click', () => {
+            this.validateGitHubRepo();
+        });
+
+        document.getElementById('importGithubBtn').addEventListener('click', () => {
+            this.handleGitHubImport();
+        });
+
+        // GitHub input validation on change
+        document.getElementById('githubInput').addEventListener('input', (e) => {
+            this.resetGitHubValidation();
         });
 
         // Settings modal

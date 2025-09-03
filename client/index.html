@@ -39,6 +39,7 @@
                 <!-- Upload Mode -->
                 <div class="upload-mode-selector">
                     <button class="mode-btn active" id="zipModeBtn">📁 ZIP File Upload</button>
+                    <button class="mode-btn" id="githubModeBtn">🐙 GitHub Repository</button>
                 </div>
 
                 <!-- ZIP Upload Mode -->
@@ -55,6 +56,34 @@
                             <div class="progress-fill" id="progressFill"></div>
                         </div>
                         <p class="progress-text" id="progressText">Uploading... 0%</p>
+                    </div>
+                </div>
+
+                <!-- GitHub Upload Mode -->
+                <div class="upload-area hidden" id="githubArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">🐙</div>
+                        <h2>Import from GitHub Repository</h2>
+                        <p>Paste your Base44 GitHub repository URL below</p>
+                        <div class="github-input-group">
+                            <input type="url" id="githubInput" placeholder="https://github.com/base44dev/oc-woodcraft-6f177ee0.git" class="github-input">
+                            <button class="btn btn-secondary" id="validateGithubBtn">🔍 Validate</button>
+                        </div>
+                        <div class="github-info hidden" id="githubInfo">
+                            <div class="info-item">
+                                <strong>Repository:</strong> <span id="repoName"></span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Branch:</strong> <span id="repoBranch">main</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="importGithubBtn" disabled>📥 Import Repository</button>
+                    </div>
+                    <div class="upload-progress hidden" id="githubProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="githubProgressFill"></div>
+                        </div>
+                        <p class="progress-text" id="githubProgressText">Importing... 0%</p>
                     </div>
                 </div>
 
